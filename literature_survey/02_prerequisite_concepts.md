@@ -267,9 +267,9 @@ graph TB
     A[Node Features X_v] --> D[Neural Network F]
     B[Neighbor Embeddings] --> D
     C[Edge Weights p_u,v] --> D
-    D --> E[Updated Embedding u_v^(t+1)]
+    D --> E["Updated Embedding u_v^(t+1)"]
     E --> F[Iterate T times]
-    F --> G[Final Embedding u_v^(T)]
+    F --> G["Final Embedding u_v^(T)"]
 ```
 
 ---

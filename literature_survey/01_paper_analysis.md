@@ -111,7 +111,7 @@ graph TB
     C --> D[IC Model with p_uv]
     C --> E[LT Model with θ_v]
     B --> F[Diffusion2Vec Embedding]
-    F --> G[Node Embeddings u_v^(T)]
+    F --> G["Node Embeddings u_v^(T)"]
     G --> H[DIEM Evaluation Q̂]
     H --> I[Greedy Selection]
     I --> J[Seed Set S*]

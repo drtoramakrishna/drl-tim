@@ -18,37 +18,37 @@
 ```mermaid
 graph TB
     subgraph "Input Layer"
-        A[Social Network G(V,E)]
-        B[User Profiles {P_v}]
-        C[Query Topics τ]
-        D[Budget k]
+        A["Social Network G(V,E)"]
+        B["User Profiles {P_v}"]
+        C["Query Topics τ"]
+        D["Budget k"]
     end
     
     subgraph "Topic-Aware Models"
-        E[Contact Frequency w_uv]
-        F[User Similarity sim(u,v)]
-        G[User Benefits B_v^τ]
-        H[Topic-Aware IC Model]
-        I[Topic-Aware LT Model]
+        E["Contact Frequency w_uv"]
+        F["User Similarity sim(u,v)"]
+        G["User Benefits B_v^τ"]
+        H["Topic-Aware IC Model"]
+        I["Topic-Aware LT Model"]
     end
     
     subgraph "Deep Learning Framework"
-        J[Diffusion2Vec Embedding]
-        K[Node Embeddings u_v^T]
-        L[DIEM Evaluation Q̂]
+        J["Diffusion2Vec Embedding"]
+        K["Node Embeddings u_v^T"]
+        L["DIEM Evaluation Q̂"]
     end
     
     subgraph "RL Training"
-        M[Experience Buffer D]
-        N[Double DQN]
-        O[Prioritized Replay]
-        P[Parameter Updates]
+        M["Experience Buffer D"]
+        N["Double DQN"]
+        O["Prioritized Replay"]
+        P["Parameter Updates"]
     end
     
     subgraph "Output Layer"
-        Q[Greedy Selection]
-        R[Seed Set S*]
-        S[Influence Spread σ_G(S*|τ)]
+        Q["Greedy Selection"]
+        R["Seed Set S*"]
+        S["Influence Spread σ_G(S*|τ)"]
     end
     
     A --> E
@@ -135,16 +135,16 @@ graph TB
     end
     
     subgraph "Topic-Aware Extension"
-        A2[Contact Frequency α₁w_uv]
-        B2[User Similarity α₂sim(u,v)]
-        C2[Target Benefits α₃B_v^τ]
-        D2[Combined Probability]
+        A2["Contact Frequency α₁w_uv"]
+        B2["User Similarity α₂sim(u,v)"]
+        C2["Target Benefits α₃B_v^τ"]
+        D2["Combined Probability"]
     end
     
     subgraph "Enhanced IC Process"
-        E2[Topic-Specific Activation]
-        F2[Benefit-Weighted Influence]
-        G2[Targeted Spread σ_G(S|τ)]
+        E2["Topic-Specific Activation"]
+        F2["Benefit-Weighted Influence"]
+        G2["Targeted Spread σ_G(S|τ)"]
     end
     
     A2 --> D2
@@ -174,8 +174,8 @@ graph TB
     end
     
     subgraph "Topic-Aware Extension"
-        A2["Edge Weights: b_uv^(τ) = α₁w_uv + α₂sim(u,v)"]
-        B2["Thresholds: θ_v^(τ) = 1 - α₃B_v^(τ)"]
+        A2["Edge Weights:<br> b_uv^(τ) = α₁w_uv + α₂sim(u,v)"]
+        B2["Thresholds:<br> θ_v^(τ) = 1 - α₃B_v^(τ)"]
         C2[Topic-Dependent Activation]
     end
     
@@ -204,8 +204,8 @@ graph TB
 ```mermaid
 graph LR
     subgraph "User Profiles"
-        A[User u: P_u = [p₁, p₂, ..., pₜ]]
-        B[User v: P_v = [p₁, p₂, ..., pₜ]]
+        A["User u: P_u = [p₁, p₂, ..., pₜ]"]
+        B["User v: P_v = [p₁, p₂, ..., pₜ]"]
     end
     
     subgraph "Metric Calculations"
@@ -395,13 +395,13 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Input Components"
-        A["Seed Set Embeddings: {u_u^(T)}_{u∈S}"]
-        B["Candidate Embedding: u_v^(T)"]
+        A["Seed Set Embeddings:<br> {u_u^(T)}_{u∈S}"]
+        B["Candidate Embedding:<br> u_v^(T)"]
     end
     
     subgraph "Aggregation Layer"
-        C["Seed Aggregation: Σ_{u∈S} u_u^(T)"]
-        D["Candidate Processing: u_v^(T)"]
+        C["Seed Aggregation:<br> Σ_{u∈S} u_u^(T)"]
+        D["Candidate Processing:<br> u_v^(T)"]
     end
     
     subgraph "Transformation Layers"
@@ -410,7 +410,7 @@ graph TB
     end
     
     subgraph "Combination Layer"
-        G["Concatenation: [Θ₆(...), Θ₇(...)]"]
+        G["Concatenation:<br> [Θ₆(...), Θ₇(...)]"]
         H["ReLU Activation"]
     end
     
@@ -692,8 +692,8 @@ sequenceDiagram
     participant Env as Environment
     participant Agent as RL Agent
     participant Net as Neural Networks
-    participant Buf as Replay Buffer
-    participant Opt as Optimizer
+    participant Buffer as Replay Buffer
+    participant Optimizer as Optimizer
     
     loop Episode
         Env->>Agent: Current state S
@@ -703,16 +703,16 @@ sequenceDiagram
         Agent->>Env: Action (selected node)
         Env->>Env: Compute true reward
         Env-->>Agent: Reward + new state
-        Agent->>Buf: Store experience
+        Agent->>Buffer: Store experience
     end
     
     loop Batch Training
-        Buf->>Opt: Sample prioritized batch
-        Opt->>Net: Compute targets (Double DQN)
-        Net-->>Opt: Current Q-values
-        Opt->>Opt: Compute loss + gradients
-        Opt->>Net: Update parameters
-        Opt->>Buf: Update priorities
+        Buffer->>Optimizer: Sample prioritized batch
+        Optimizer->>Net: Compute targets (Double DQN)
+        Net-->>Optimizer: Current Q-values
+        Optimizer->>Optimizer: Compute loss + gradients
+        Optimizer->>Net: Update parameters
+        Optimizer->>Buffer: Update priorities
     end
     
     Note over Net: Periodic target network update
